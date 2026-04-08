@@ -113,12 +113,12 @@ input {
 <div class="form-box" id="formBox">
 <h3>Enter Details</h3>
 
-<input type="text" id="name" placeholder="Your Name" required>
-<input type="text" id="phone" placeholder="Phone Number" required>
-<input type="text" id="address" placeholder="Address" required>
+<input type="text" id="name" placeholder="Your Name">
+<input type="text" id="phone" placeholder="Phone Number">
+<input type="text" id="address" placeholder="Address">
 
 <button onclick="payNow()">Pay Now</button>
-<button class="whatsapp" onclick="whatsappOrder()">Order on WhatsApp</button>
+<button class="whatsapp" onclick="whatsappOrder()">Confirm on WhatsApp</button>
 <button onclick="closeForm()">Cancel</button>
 </div>
 
@@ -139,7 +139,14 @@ function closeForm() {
 function payNow() {
   let upi = "9817175353-3@ybl";
   let url = `upi://pay?pa=${upi}&pn=Trending Outfit 2.0&tn=Buy ${productName}&am=${productPrice}&cu=INR`;
+
+  // Try opening UPI
   window.location.href = url;
+
+  // Backup alert
+  setTimeout(() => {
+    alert("Agar payment complete na ho to WhatsApp button se confirm karo.");
+  }, 2000);
 }
 
 function whatsappOrder() {
@@ -152,7 +159,7 @@ function whatsappOrder() {
     return;
   }
 
-  let msg = `Order Details:%0AProduct: ${productName}%0APrice: ₹${productPrice}%0AName: ${name}%0APhone: ${phone}%0AAddress: ${address}`;
+  let msg = `Order Details:%0AProduct: ${productName}%0APrice: ₹${productPrice}%0AName: ${name}%0APhone: ${phone}%0AAddress: ${address}%0AUPI: 9817175353-3@ybl`;
 
   window.open(`https://wa.me/919817175353?text=${msg}`);
 }
