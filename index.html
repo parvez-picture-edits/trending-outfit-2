@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trending Outfit 2.0</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial;
+  background: #ffffff;
+}
+
+header {
+  background: #0f3d2e;
+  color: white;
+  padding: 15px;
+  text-align: center;
+  font-size: 22px;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+.card {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 10px;
+  text-align: center;
+  transition: 0.3s;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+.card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.price {
+  color: #0f3d2e;
+  font-weight: bold;
+}
+
+button {
+  background: #0f3d2e;
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  margin-top: 10px;
+  border-radius: 5px;
+}
+
+button:hover {
+  background: #145c45;
+}
+
+.footer {
+  text-align: center;
+  padding: 15px;
+  background: #0f3d2e;
+  color: white;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+Trending Outfit 2.0 <br>
+<small>Only Delivery in India 🇮🇳</small>
+</header>
+
+<div class="container">
+
+<div class="card">
+<img src="https://via.placeholder.com/200" alt="">
+<h3>Baggy Jeans</h3>
+<p class="price">₹1499</p>
+<button onclick="buy()">Buy Now</button>
+</div>
+
+<div class="card">
+<img src="https://via.placeholder.com/200" alt="">
+<h3>Oversized T-Shirt</h3>
+<p class="price">₹799</p>
+<button onclick="buy()">Buy Now</button>
+</div>
+
+<div class="card">
+<img src="https://via.placeholder.com/200" alt="">
+<h3>Stylish Watch</h3>
+<p class="price">₹1999</p>
+<button onclick="buy()">Buy Now</button>
+</div>
+
+<div class="card">
+<img src="https://via.placeholder.com/200" alt="">
+<h3>Sneakers</h3>
+<p class="price">₹2499</p>
+<button onclick="buy()">Buy Now</button>
+</div>
+
+</div>
+
+<div class="footer">
+© 2026 Trending Outfit 2.0
+</div>
+
+<script>
+function buy() {
+  alert("Order placed! Payment system baad me add karenge.");
+}
+</script>
+
+</body>
+</html>
