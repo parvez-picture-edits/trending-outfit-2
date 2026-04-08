@@ -59,6 +59,7 @@ button {
   box-shadow:0 0 10px rgba(0,0,0,0.3);
   width:90%;
   max-width:300px;
+  z-index:999;
 }
 
 input {
@@ -66,7 +67,6 @@ input {
   padding:8px;
   margin:5px 0;
 }
-
 </style>
 </head>
 
@@ -88,9 +88,23 @@ input {
 
 <div class="card">
 <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff">
-<h3>Shoes</h3>
+<h3>Stylish Shoes</h3>
 <p>₹2499</p>
 <button onclick="openForm('Shoes',2499)">Buy Now</button>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1511499767150-a48a237f0083">
+<h3>Sunglasses</h3>
+<p>₹999</p>
+<button onclick="openForm('Sunglasses',999)">Buy Now</button>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab">
+<h3>Oversized T-Shirt</h3>
+<p>₹799</p>
+<button onclick="openForm('T-Shirt',799)">Buy Now</button>
 </div>
 
 </div>
@@ -99,9 +113,9 @@ input {
 <div class="form-box" id="formBox">
 <h3>Enter Details</h3>
 
-<input type="text" id="name" placeholder="Your Name">
-<input type="text" id="phone" placeholder="Phone Number">
-<input type="text" id="address" placeholder="Address">
+<input type="text" id="name" placeholder="Your Name" required>
+<input type="text" id="phone" placeholder="Phone Number" required>
+<input type="text" id="address" placeholder="Address" required>
 
 <button onclick="payNow()">Pay Now</button>
 <button class="whatsapp" onclick="whatsappOrder()">Order on WhatsApp</button>
@@ -124,7 +138,7 @@ function closeForm() {
 
 function payNow() {
   let upi = "9817175353-3@ybl";
-  let url = `upi://pay?pa=${upi}&pn=Trending Outfit&tn=Buy ${productName}&am=${productPrice}&cu=INR`;
+  let url = `upi://pay?pa=${upi}&pn=Trending Outfit 2.0&tn=Buy ${productName}&am=${productPrice}&cu=INR`;
   window.location.href = url;
 }
 
@@ -132,6 +146,11 @@ function whatsappOrder() {
   let name = document.getElementById("name").value;
   let phone = document.getElementById("phone").value;
   let address = document.getElementById("address").value;
+
+  if(!name || !phone || !address){
+    alert("Please fill all details");
+    return;
+  }
 
   let msg = `Order Details:%0AProduct: ${productName}%0APrice: ₹${productPrice}%0AName: ${name}%0APhone: ${phone}%0AAddress: ${address}`;
 
