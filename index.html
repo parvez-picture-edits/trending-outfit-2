@@ -1,169 +1,539 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Trending Outfit 2.0</title>
-
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>The Local Shop – Fashion & Style</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet"/>
 <style>
-body { margin:0; font-family:Arial; background:#fff; }
-
-header {
-  background:#0f3d2e;
-  color:#fff;
-  padding:15px;
-  text-align:center;
-}
-
-.container {
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-  gap:20px;
-  padding:20px;
-}
-
-.card {
-  border:1px solid #ddd;
-  border-radius:10px;
-  padding:10px;
-  text-align:center;
-}
-
-.card img {
-  width:100%;
-  height:200px;
-  object-fit:cover;
-}
-
-button {
-  background:#0f3d2e;
-  color:white;
-  border:none;
-  padding:10px;
-  margin-top:5px;
-  border-radius:5px;
-  cursor:pointer;
-}
-
-.whatsapp { background:#25D366; }
-
-.form-box {
-  display:none;
-  position:fixed;
-  top:50%;
-  left:50%;
-  transform:translate(-50%,-50%);
-  background:#fff;
-  padding:20px;
-  border-radius:10px;
-  box-shadow:0 0 10px rgba(0,0,0,0.3);
-  width:90%;
-  max-width:300px;
-  z-index:999;
-}
-
-input {
-  width:100%;
-  padding:8px;
-  margin:5px 0;
-}
+:root{--bg:#0d0d0d;--card:#181818;--acc:#ff4d6d;--gold:#ffd60a;--grn:#06d6a0;--w:#fff;--gr:#888;--bd:#222;}
+*{box-sizing:border-box;margin:0;padding:0;}html{scroll-behavior:smooth;}
+body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--w);overflow-x:hidden;}
+.topbar{background:var(--acc);font-size:.78rem;font-weight:700;padding:.4rem 4%;display:flex;justify-content:space-between;flex-wrap:wrap;gap:.3rem;}
+.mq{overflow:hidden;flex:1;}.mq span{display:inline-block;white-space:nowrap;animation:mq 20s linear infinite;}
+@keyframes mq{from{transform:translateX(80%)}to{transform:translateX(-100%)}}
+nav{background:rgba(13,13,13,.97);position:sticky;top:0;z-index:900;border-bottom:1px solid var(--bd);backdrop-filter:blur(16px);}
+.ni{display:flex;align-items:center;justify-content:space-between;padding:0 4%;height:64px;gap:1rem;}
+.logo{font-family:'Bebas Neue',sans-serif;font-size:1.9rem;letter-spacing:.08em;text-decoration:none;color:var(--w);}
+.logo span{color:var(--acc);}
+.sw{flex:1;max-width:360px;position:relative;}
+.sw input{width:100%;padding:.55rem .9rem .55rem 2.4rem;background:rgba(255,255,255,.07);border:1.5px solid var(--bd);border-radius:50px;color:var(--w);font-family:'Nunito',sans-serif;font-size:.88rem;outline:none;}
+.sw input:focus{border-color:var(--acc);}.sw input::placeholder{color:var(--gr);}
+.si{position:absolute;left:.85rem;top:50%;transform:translateY(-50%);font-size:.85rem;}
+.na{display:flex;gap:.6rem;align-items:center;}
+.nb{background:rgba(255,255,255,.07);border:1.5px solid var(--bd);border-radius:50px;padding:.45rem 1rem;color:var(--w);font-size:.82rem;font-weight:700;cursor:pointer;font-family:'Nunito',sans-serif;}
+.nb:hover{border-color:rgba(255,255,255,.3);}
+.cb{background:var(--acc);border:none;border-radius:50px;padding:.5rem 1.2rem;color:#fff;font-size:.88rem;font-weight:800;cursor:pointer;display:flex;align-items:center;gap:.4rem;position:relative;font-family:'Nunito',sans-serif;transition:background .2s;}
+.cb:hover{background:#c73652;}
+.cbadge{background:var(--gold);color:#000;border-radius:50%;width:18px;height:18px;font-size:.65rem;font-weight:900;display:flex;align-items:center;justify-content:center;position:absolute;top:-7px;right:-5px;}
+.hero{position:relative;height:90vh;min-height:500px;overflow:hidden;display:flex;align-items:center;}
+.hbg{position:absolute;inset:0;background:url('https://i.ibb.co/bR8R0BvV/IMG-0895.jpg') center/cover no-repeat;filter:brightness(.25);animation:hz 10s ease-in-out infinite alternate;}
+@keyframes hz{from{transform:scale(1.04)}to{transform:scale(1.1)}}
+.hov{position:absolute;inset:0;background:linear-gradient(110deg,rgba(13,13,13,.93) 0%,rgba(13,13,13,.2) 65%,transparent);}
+.hc{position:relative;z-index:2;padding:0 6%;max-width:640px;}
+.hpill{display:inline-block;background:rgba(255,77,109,.15);border:1px solid rgba(255,77,109,.4);color:var(--acc);font-size:.72rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;padding:.28rem .9rem;border-radius:50px;margin-bottom:1.1rem;animation:fu .7s ease .1s both;}
+.hero h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(3.5rem,8vw,7rem);line-height:.94;letter-spacing:.02em;margin-bottom:.9rem;animation:fu .7s ease .25s both;}
+.hero h1 em{color:var(--acc);font-style:normal;display:block;}
+.hero p{color:rgba(255,255,255,.72);font-size:.98rem;line-height:1.65;margin-bottom:2rem;animation:fu .7s ease .4s both;}
+.hbs{display:flex;gap:.9rem;flex-wrap:wrap;animation:fu .7s ease .55s both;}
+.br{background:var(--acc);color:#fff;padding:.78rem 2rem;border-radius:50px;font-weight:800;font-size:.95rem;text-decoration:none;box-shadow:0 6px 28px rgba(255,77,109,.4);transition:all .2s;}
+.br:hover{transform:translateY(-2px);}
+.bo{background:transparent;color:#fff;padding:.78rem 2rem;border-radius:50px;font-weight:700;font-size:.95rem;text-decoration:none;border:2px solid rgba(255,255,255,.35);transition:border-color .2s;}
+.bo:hover{border-color:#fff;}
+@keyframes fu{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+.feats{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--bd);border-bottom:1px solid var(--bd);}
+@media(max-width:640px){.feats{grid-template-columns:repeat(2,1fr);}}
+.fi{display:flex;align-items:center;gap:.8rem;padding:1.1rem 3%;border-right:1px solid var(--bd);}
+.fi:last-child{border-right:none;}.fie{font-size:1.5rem;}.fit{font-size:.84rem;font-weight:800;}.fis{font-size:.72rem;color:var(--gr);}
+.sec{padding:3rem 4%;}
+.sh{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:2rem;}
+.sl{font-size:.68rem;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--acc);margin-bottom:.3rem;}
+.st{font-family:'Bebas Neue',sans-serif;font-size:clamp(1.8rem,3.5vw,2.8rem);letter-spacing:.04em;}
+.va{font-size:.8rem;font-weight:800;color:var(--acc);text-decoration:none;border:1.5px solid var(--acc);padding:.35rem .9rem;border-radius:50px;transition:all .2s;}
+.va:hover{background:var(--acc);color:#fff;}
+.pills{display:flex;gap:.55rem;overflow-x:auto;padding-bottom:.5rem;margin-bottom:1.8rem;scrollbar-width:none;}
+.pills::-webkit-scrollbar{display:none;}
+.pill{padding:.4rem 1.1rem;border-radius:50px;border:1.5px solid var(--bd);background:transparent;color:var(--gr);font-size:.82rem;font-weight:700;cursor:pointer;white-space:nowrap;font-family:'Nunito',sans-serif;transition:all .2s;}
+.pill:hover,.pill.on{background:var(--acc);color:#fff;border-color:var(--acc);}
+.pgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:1.2rem;}
+.pc{background:var(--card);border-radius:16px;overflow:hidden;border:1px solid var(--bd);transition:transform .3s,box-shadow .3s,border-color .3s;position:relative;}
+.pc:hover{transform:translateY(-7px);box-shadow:0 18px 45px rgba(0,0,0,.5);border-color:rgba(255,77,109,.3);}
+.piw{position:relative;overflow:hidden;aspect-ratio:3/4;background:#111;}
+.piw img{width:100%;height:100%;object-fit:cover;transition:transform .5s;display:block;}
+.pc:hover .piw img{transform:scale(1.08);}
+.ptag{position:absolute;top:10px;left:10px;font-size:.66rem;font-weight:800;padding:.2rem .6rem;border-radius:50px;letter-spacing:.06em;text-transform:uppercase;}
+.th{background:var(--acc);color:#fff;}.tn{background:var(--grn);color:#000;}.ts{background:var(--gold);color:#000;}.tt{background:#4361ee;color:#fff;}
+.pw{position:absolute;top:10px;right:10px;width:32px;height:32px;background:rgba(13,13,13,.7);border-radius:50%;border:none;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:.95rem;backdrop-filter:blur(4px);transition:all .2s;}
+.pw:hover,.pw.on{background:var(--acc);}
+.phb{position:absolute;bottom:0;left:0;right:0;display:flex;transform:translateY(100%);transition:transform .3s;}
+.pc:hover .phb{transform:translateY(0);}
+.phb button{flex:1;padding:.65rem;border:none;cursor:pointer;font-family:'Nunito',sans-serif;font-size:.8rem;font-weight:800;}
+.pa{background:var(--acc);color:#fff;transition:background .2s;}.pa:hover{background:#c73652;}
+.pb{background:var(--gold);color:#000;transition:background .2s;}.pb:hover{background:#e6c400;}
+.pb2{padding:1rem 1rem 1.1rem;}
+.pbr{font-size:.68rem;font-weight:800;color:var(--acc);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.2rem;}
+.pn{font-size:.93rem;font-weight:700;margin-bottom:.25rem;line-height:1.3;}
+.pm{font-size:.73rem;color:var(--gr);margin-bottom:.5rem;}
+.pst{color:var(--gold);font-size:.78rem;}.pst span{color:var(--gr);font-size:.72rem;margin-left:.25rem;}
+.ppr{display:flex;align-items:center;gap:.55rem;flex-wrap:wrap;margin-top:.4rem;}
+.pp{font-size:1.05rem;font-weight:900;}.po{font-size:.8rem;color:var(--gr);text-decoration:line-through;}
+.pd{font-size:.7rem;font-weight:800;color:var(--grn);background:rgba(6,214,160,.12);padding:.12rem .4rem;border-radius:4px;}
+.psz{display:flex;gap:.35rem;margin-top:.65rem;flex-wrap:wrap;}
+.sz{padding:.18rem .5rem;border:1px solid var(--bd);border-radius:5px;font-size:.68rem;font-weight:700;color:var(--gr);cursor:pointer;transition:all .15s;}
+.sz:hover,.sz.on{border-color:var(--acc);color:var(--acc);}
+.deal{background:linear-gradient(135deg,#111 0%,#1a1a1a 100%);border:1px solid var(--bd);border-radius:20px;padding:2.5rem;display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;align-items:center;margin:0 4% 3.5rem;}
+@media(max-width:680px){.deal{grid-template-columns:1fr;gap:1.5rem;padding:1.8rem;margin:0 4% 2.5rem;}}
+.dlbl{font-size:.68rem;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:.4rem;}
+.dt{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.2rem,4.5vw,3.5rem);line-height:1;margin-bottom:.7rem;}
+.dt em{color:var(--acc);font-style:normal;}
+.dd{color:var(--gr);font-size:.9rem;line-height:1.6;margin-bottom:1.3rem;}
+.trow{display:flex;gap:.8rem;margin-bottom:1.8rem;}
+.tb{background:rgba(255,255,255,.05);border:1px solid var(--bd);border-radius:10px;padding:.7rem .9rem;text-align:center;min-width:58px;}
+.tn2{font-family:'Bebas Neue',sans-serif;font-size:2rem;color:var(--gold);line-height:1;}
+.tl{font-size:.6rem;text-transform:uppercase;letter-spacing:.1em;color:var(--gr);}
+.di{border-radius:14px;overflow:hidden;position:relative;}
+.di img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block;}
+.dpt{position:absolute;top:1rem;right:1rem;background:var(--acc);color:#fff;border-radius:12px;padding:.5rem .9rem;text-align:center;box-shadow:0 4px 18px rgba(255,77,109,.45);}
+.dpt .db{font-family:'Bebas Neue',sans-serif;font-size:1.7rem;line-height:1;}
+.dpt .ds{font-size:.7rem;opacity:.85;}
+/* CART */
+.cov{position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:800;opacity:0;pointer-events:none;transition:opacity .3s;backdrop-filter:blur(4px);}
+.cov.show{opacity:1;pointer-events:all;}
+.cdr{position:fixed;top:0;right:-480px;bottom:0;width:min(460px,100vw);background:#111;z-index:801;display:flex;flex-direction:column;transition:right .4s cubic-bezier(.4,0,.2,1);border-left:1px solid var(--bd);}
+.cdr.open{right:0;}
+.cdh{display:flex;align-items:center;justify-content:space-between;padding:1.2rem 1.4rem;border-bottom:1px solid var(--bd);}
+.cdh h2{font-family:'Bebas Neue',sans-serif;font-size:1.5rem;letter-spacing:.06em;}
+.cclose{background:rgba(255,255,255,.07);border:none;color:var(--w);width:34px;height:34px;border-radius:8px;cursor:pointer;font-size:1.1rem;display:flex;align-items:center;justify-content:center;}
+.cclose:hover{background:var(--acc);}
+.citems{flex:1;overflow-y:auto;padding:.9rem 1.4rem;}
+.cemp{text-align:center;padding:3rem 0;color:var(--gr);}
+.cemp div:first-child{font-size:3rem;margin-bottom:.8rem;opacity:.5;}
+.ci{display:flex;gap:.9rem;padding:.9rem 0;border-bottom:1px solid var(--bd);}
+.ci img{width:72px;height:90px;object-fit:cover;border-radius:8px;flex-shrink:0;}
+.cii{flex:1;}
+.cibr{font-size:.67rem;font-weight:800;color:var(--acc);letter-spacing:.08em;text-transform:uppercase;}
+.cin{font-size:.88rem;font-weight:700;}
+.cim{font-size:.74rem;color:var(--gr);margin:.15rem 0 .4rem;}
+.cip{font-size:.95rem;font-weight:900;color:var(--gold);}
+.ciq{display:flex;align-items:center;gap:.45rem;margin-top:.4rem;}
+.qb{width:26px;height:26px;border-radius:6px;border:1.5px solid var(--bd);background:rgba(255,255,255,.05);color:var(--w);cursor:pointer;font-size:.9rem;display:flex;align-items:center;justify-content:center;line-height:1;transition:border-color .15s;}
+.qb:hover{border-color:var(--acc);}
+.qn{font-weight:800;font-size:.88rem;min-width:22px;text-align:center;}
+.cir{background:none;border:none;cursor:pointer;color:rgba(255,255,255,.25);font-size:1rem;align-self:flex-start;transition:color .2s;}
+.cir:hover{color:var(--acc);}
+.cft{padding:1.1rem 1.4rem;border-top:1px solid var(--bd);}
+.crow{display:flex;justify-content:space-between;font-size:.88rem;color:var(--gr);margin-bottom:.35rem;}
+.ctrow{display:flex;justify-content:space-between;font-weight:900;font-size:1.05rem;margin:.7rem 0 1.1rem;}
+.chkbtn{width:100%;padding:.88rem;background:linear-gradient(135deg,var(--acc),#c73652);color:#fff;border:none;cursor:pointer;border-radius:12px;font-family:'Bebas Neue',sans-serif;font-size:1.25rem;letter-spacing:.08em;transition:all .2s;box-shadow:0 4px 18px rgba(255,77,109,.35);}
+.chkbtn:hover{transform:translateY(-1px);}
+/* UPI */
+.uov{position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:1000;display:flex;align-items:center;justify-content:center;padding:1rem;opacity:0;pointer-events:none;transition:opacity .3s;backdrop-filter:blur(10px);}
+.uov.show{opacity:1;pointer-events:all;}
+.ubox{background:#111;border:1px solid var(--bd);border-radius:22px;width:100%;max-width:460px;max-height:92vh;overflow-y:auto;animation:su .4s ease;}
+@keyframes su{from{transform:translateY(36px);opacity:0}to{transform:translateY(0);opacity:1}}
+.uhd{background:linear-gradient(135deg,var(--acc),#c73652);padding:1.4rem 1.7rem;border-radius:22px 22px 0 0;display:flex;justify-content:space-between;align-items:center;}
+.uhd h2{font-family:'Bebas Neue',sans-serif;font-size:1.55rem;letter-spacing:.06em;}
+.ux{background:rgba(255,255,255,.2);border:none;color:#fff;width:30px;height:30px;border-radius:7px;cursor:pointer;font-size:.95rem;display:flex;align-items:center;justify-content:center;}
+.uamtbar{background:rgba(255,255,255,.04);border-bottom:1px solid var(--bd);padding:1rem 1.7rem;display:flex;justify-content:space-between;align-items:center;}
+.uaml{font-size:.75rem;color:var(--gr);font-weight:700;text-transform:uppercase;letter-spacing:.06em;}
+.uamv{font-family:'Bebas Neue',sans-serif;font-size:2rem;color:var(--gold);}
+.ubody{padding:1.4rem 1.7rem;}
+.ust{font-size:.72rem;font-weight:800;color:var(--gr);text-transform:uppercase;letter-spacing:.12em;margin-bottom:.9rem;}
+.uapps{display:grid;grid-template-columns:repeat(3,1fr);gap:.7rem;margin-bottom:1.3rem;}
+.uapp{background:rgba(255,255,255,.04);border:1.5px solid var(--bd);border-radius:12px;padding:.9rem .4rem;display:flex;flex-direction:column;align-items:center;gap:.4rem;cursor:pointer;transition:all .2s;font-family:'Nunito',sans-serif;}
+.uapp:hover,.uapp.sel{border-color:var(--acc);background:rgba(255,77,109,.08);}
+.uai{font-size:1.9rem;line-height:1;}
+.uan{font-size:.74rem;font-weight:800;}
+.uat{font-size:.6rem;color:var(--gr);}
+.qrsec{background:rgba(255,255,255,.03);border:1px solid var(--bd);border-radius:14px;padding:1.3rem;text-align:center;margin-bottom:1.2rem;}
+.qrwrap{background:#fff;border-radius:12px;padding:.8rem;display:inline-block;margin-bottom:.8rem;}
+.qrwrap img{width:150px;height:150px;display:block;border-radius:6px;}
+.quid{font-size:.85rem;color:var(--gold);font-weight:800;margin-bottom:.25rem;}
+.qunote{font-size:.73rem;color:var(--gr);}
+.div{display:flex;align-items:center;gap:.8rem;margin:1rem 0;}
+.div::before,.div::after{content:'';flex:1;height:1px;background:var(--bd);}
+.div span{font-size:.72rem;color:var(--gr);font-weight:700;text-transform:uppercase;letter-spacing:.08em;}
+.uman{background:rgba(255,255,255,.04);border:1.5px solid var(--bd);border-radius:12px;padding:1.1rem;margin-bottom:1.2rem;}
+.uidrow{display:flex;align-items:center;justify-content:space-between;margin-bottom:.8rem;}
+.uidl{font-size:.7rem;color:var(--gr);font-weight:700;text-transform:uppercase;letter-spacing:.06em;}
+.uidv{font-size:.92rem;font-weight:800;color:var(--gold);}
+.cpbtn{background:rgba(255,255,255,.08);border:1px solid var(--bd);border-radius:7px;padding:.28rem .75rem;color:var(--w);font-size:.74rem;font-weight:700;cursor:pointer;font-family:'Nunito',sans-serif;transition:all .2s;}
+.cpbtn:hover{background:var(--acc);border-color:var(--acc);}
+.steps{list-style:none;}
+.steps li{display:flex;align-items:flex-start;gap:.7rem;font-size:.8rem;color:var(--gr);margin-bottom:.45rem;line-height:1.4;}
+.sn{background:var(--acc);color:#fff;border-radius:50%;width:18px;height:18px;display:flex;align-items:center;justify-content:center;font-size:.62rem;font-weight:900;flex-shrink:0;margin-top:.1rem;}
+.ufm{margin-bottom:1.2rem;}
+.ufr{display:grid;grid-template-columns:1fr 1fr;gap:.7rem;}
+.fg{margin-bottom:.8rem;}
+.fg label{display:block;font-size:.7rem;font-weight:800;color:var(--gr);text-transform:uppercase;letter-spacing:.05em;margin-bottom:.35rem;}
+.fg input,.fg textarea{width:100%;padding:.68rem .9rem;background:rgba(255,255,255,.05);border:1.5px solid var(--bd);border-radius:9px;color:var(--w);font-family:'Nunito',sans-serif;font-size:.9rem;outline:none;transition:border-color .2s;}
+.fg input:focus,.fg textarea:focus{border-color:var(--acc);}
+.fg input::placeholder,.fg textarea::placeholder{color:rgba(255,255,255,.22);}
+.fg textarea{height:70px;resize:none;}
+.psum{background:rgba(255,255,255,.03);border:1px solid var(--bd);border-radius:12px;padding:.9rem 1.1rem;margin-bottom:1.2rem;}
+.pstt{font-size:.7rem;font-weight:800;color:var(--gr);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.7rem;}
+.psi{display:flex;justify-content:space-between;font-size:.84rem;padding:.18rem 0;color:rgba(255,255,255,.72);}
+.psto{display:flex;justify-content:space-between;font-weight:900;font-size:.98rem;padding-top:.65rem;margin-top:.45rem;border-top:1px solid var(--bd);}
+.paybtn{width:100%;padding:.92rem;background:linear-gradient(135deg,var(--acc),#c73652);color:#fff;border:none;cursor:pointer;border-radius:12px;font-family:'Bebas Neue',sans-serif;font-size:1.25rem;letter-spacing:.08em;transition:all .2s;box-shadow:0 5px 22px rgba(255,77,109,.4);margin-bottom:.7rem;}
+.paybtn:hover{transform:translateY(-2px);}
+.psec{text-align:center;font-size:.72rem;color:var(--gr);display:flex;align-items:center;justify-content:center;gap:.35rem;}
+/* SUCCESS */
+.sov{position:fixed;inset:0;background:rgba(0,0,0,.9);z-index:1100;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s;backdrop-filter:blur(12px);}
+.sov.show{opacity:1;pointer-events:all;}
+.sbox{background:var(--card);border:1px solid var(--bd);border-radius:22px;padding:2.3rem;text-align:center;max-width:380px;width:90%;animation:su .4s ease;}
+.sck{width:68px;height:68px;background:rgba(6,214,160,.14);border:2px solid var(--grn);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.9rem;margin:0 auto 1.1rem;}
+.sbox h3{font-family:'Bebas Neue',sans-serif;font-size:1.9rem;letter-spacing:.04em;margin-bottom:.45rem;}
+.sbox p{color:var(--gr);font-size:.88rem;line-height:1.6;margin-bottom:1.2rem;}
+.soid{background:rgba(255,255,255,.04);border:1px solid var(--bd);border-radius:9px;padding:.65rem;font-size:.8rem;margin-bottom:1.2rem;}
+.soid span{color:var(--gold);font-weight:800;}
+.sbtn{background:var(--acc);color:#fff;border:none;padding:.75rem 1.8rem;border-radius:50px;font-family:'Bebas Neue',sans-serif;font-size:1.05rem;letter-spacing:.06em;cursor:pointer;transition:background .2s;}
+.sbtn:hover{background:#c73652;}
+/* TOAST */
+.toast{position:fixed;bottom:2rem;left:50%;transform:translateX(-50%) translateY(16px);background:rgba(18,18,18,.97);border:1px solid var(--bd);color:var(--w);padding:.65rem 1.4rem;border-radius:50px;font-size:.84rem;font-weight:700;opacity:0;pointer-events:none;transition:all .3s;z-index:9999;white-space:nowrap;box-shadow:0 8px 28px rgba(0,0,0,.4);}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+.toast.g{color:var(--grn);border-color:rgba(6,214,160,.3);}
+.toast.r{color:var(--acc);border-color:rgba(255,77,109,.3);}
+footer{background:#0a0a0a;border-top:1px solid var(--bd);}
+.fmain{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:2.5rem;padding:2.5rem 4%;}
+@media(max-width:720px){.fmain{grid-template-columns:1fr 1fr;gap:1.8rem;}}
+@media(max-width:460px){.fmain{grid-template-columns:1fr;}}
+.flogo{font-family:'Bebas Neue',sans-serif;font-size:2rem;letter-spacing:.08em;margin-bottom:.7rem;}
+.flogo span{color:var(--acc);}
+.fd{font-size:.84rem;color:var(--gr);line-height:1.7;margin-bottom:1.1rem;}
+.fsoc{display:flex;gap:.5rem;}
+.fsb{width:36px;height:36px;border-radius:9px;background:rgba(255,255,255,.05);border:1px solid var(--bd);display:flex;align-items:center;justify-content:center;text-decoration:none;color:var(--w);font-size:.9rem;transition:background .2s;}
+.fsb:hover{background:var(--acc);}
+.fc h5{font-size:.8rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em;margin-bottom:.9rem;}
+.fc ul{list-style:none;}.fc li{margin-bottom:.45rem;}
+.fc a{color:var(--gr);text-decoration:none;font-size:.83rem;transition:color .2s;}
+.fc a:hover{color:var(--gold);}
+.fbot{border-top:1px solid var(--bd);padding:1.1rem 4%;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.7rem;font-size:.78rem;color:var(--gr);}
+.pms{display:flex;gap:.45rem;}
+.pm{background:rgba(255,255,255,.06);border:1px solid var(--bd);border-radius:5px;padding:.22rem .55rem;font-size:.68rem;font-weight:800;}
+.wa{position:fixed;bottom:2rem;right:2rem;z-index:799;width:54px;height:54px;background:#25d366;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 5px 24px rgba(37,211,102,.5);text-decoration:none;animation:wap 2.5s ease infinite;}
+@keyframes wap{0%,100%{box-shadow:0 5px 24px rgba(37,211,102,.5)}50%{box-shadow:0 5px 38px rgba(37,211,102,.75)}}
+.wa:hover{transform:scale(1.1);}
+.wa svg{width:28px;fill:#fff;}
+@media(max-width:640px){.pgrid{grid-template-columns:repeat(2,1fr);gap:.9rem;}}
 </style>
 </head>
-
 <body>
 
-<header>
-<h2>Trending Outfit 2.0</h2>
-<p>Only Delivery in India 🇮🇳</p>
-</header>
-
-<div class="container">
-
-<div class="card">
-<img src="https://images.unsplash.com/photo-1511376777868-611b54f68947">
-<h3>Premium Watch</h3>
-<p>₹1999</p>
-<button onclick="openForm('Watch',1999)">Buy Now</button>
+<div class="topbar">
+  <div class="mq"><span>🚚 FREE Delivery on orders ₹499+ &nbsp;&nbsp; 🔥 NEW: Oversized Tees, Baggy Jeans, Watches &nbsp;&nbsp; 💳 UPI Payment Available &nbsp;&nbsp; 📦 Same-Day Dispatch &nbsp;&nbsp;</span></div>
+  <span style="white-space:nowrap;font-size:.75rem">📧 thelocalshop@gmail.com</span>
 </div>
 
-<div class="card">
-<img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff">
-<h3>Stylish Shoes</h3>
-<p>₹2499</p>
-<button onclick="openForm('Shoes',2499)">Buy Now</button>
+<nav>
+  <div class="ni">
+    <a class="logo" href="#"><span>THE</span> LOCAL SHOP</a>
+    <div class="sw"><span class="si">🔍</span><input type="text" id="si" placeholder="Search products..." oninput="doSearch()"/></div>
+    <div class="na">
+      <button class="nb" onclick="showToast('Wishlist coming soon 💖')">♡ Wishlist</button>
+      <button class="cb" onclick="openCart()">🛒 Cart<span class="cbadge" id="cbadge">0</span></button>
+    </div>
+  </div>
+</nav>
+
+<div class="hero" id="home">
+  <div class="hbg"></div>
+  <div class="hov"></div>
+  <div class="hc">
+    <div class="hpill">✦ New Collection 2025</div>
+    <h1>WEAR YOUR<em>VIBE.</em></h1>
+    <p>Premium streetwear — Oversized tees, baggy jeans,<br/>watches, sneakers & more. Delivered to your door.</p>
+    <div class="hbs">
+      <a class="br" href="#products">Shop Now →</a>
+      <a class="bo" href="#cats">Browse Collections</a>
+    </div>
+  </div>
 </div>
 
-<div class="card">
-<img src="https://images.unsplash.com/photo-1511499767150-a48a237f0083">
-<h3>Sunglasses</h3>
-<p>₹999</p>
-<button onclick="openForm('Sunglasses',999)">Buy Now</button>
+<div class="feats">
+  <div class="fi"><div class="fie">🚚</div><div><div class="fit">Free Delivery</div><div class="fis">Orders above ₹499</div></div></div>
+  <div class="fi"><div class="fie">🔄</div><div><div class="fit">Easy Returns</div><div class="fis">7-day hassle-free</div></div></div>
+  <div class="fi"><div class="fie">💳</div><div><div class="fit">UPI Payments</div><div class="fis">GPay, PhonePe & more</div></div></div>
+  <div class="fi"><div class="fie">💬</div><div><div class="fit">WhatsApp Support</div><div class="fis">Chat anytime</div></div></div>
 </div>
 
-<div class="card">
-<img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab">
-<h3>Oversized T-Shirt</h3>
-<p>₹799</p>
-<button onclick="openForm('T-Shirt',799)">Buy Now</button>
+<section class="sec" id="cats">
+  <div class="sh"><div><div class="sl">Collections</div><div class="st">SHOP BY CATEGORY</div></div></div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:1rem;">
+    <div onclick="setCat('oversized')" style="border-radius:14px;overflow:hidden;height:160px;position:relative;cursor:pointer;border:1px solid var(--bd);">
+      <img src="https://i.ibb.co/yFr0P33p/image.jpg" style="width:100%;height:100%;object-fit:cover;filter:brightness(.45);" onerror="this.src='https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400&q=70'"/>
+      <div style="position:absolute;bottom:0;left:0;right:0;padding:1rem;background:linear-gradient(transparent,rgba(0,0,0,.7));"><div style="font-family:'Bebas Neue',sans-serif;font-size:1.1rem;letter-spacing:.04em;">OVERSIZED TEES</div><div style="font-size:.72rem;color:rgba(255,255,255,.6);">New Arrivals</div></div>
+    </div>
+    <div onclick="setCat('jeans')" style="border-radius:14px;overflow:hidden;height:160px;position:relative;cursor:pointer;border:1px solid var(--bd);">
+      <img src="https://i.ibb.co/chKzpf73/image.jpg" style="width:100%;height:100%;object-fit:cover;filter:brightness(.45);" onerror="this.src='https://images.unsplash.com/photo-1542272604-787c3835535d?w=400&q=70'"/>
+      <div style="position:absolute;bottom:0;left:0;right:0;padding:1rem;background:linear-gradient(transparent,rgba(0,0,0,.7));"><div style="font-family:'Bebas Neue',sans-serif;font-size:1.1rem;letter-spacing:.04em;">JEANS & LOWERS</div><div style="font-size:.72rem;color:rgba(255,255,255,.6);">Trending</div></div>
+    </div>
+    <div onclick="setCat('watch')" style="border-radius:14px;overflow:hidden;height:160px;position:relative;cursor:pointer;border:1px solid var(--bd);">
+      <img src="https://i.ibb.co/PG9tSjFw/image.jpg" style="width:100%;height:100%;object-fit:cover;filter:brightness(.45);" onerror="this.src='https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400&q=70'"/>
+      <div style="position:absolute;bottom:0;left:0;right:0;padding:1rem;background:linear-gradient(transparent,rgba(0,0,0,.7));"><div style="font-family:'Bebas Neue',sans-serif;font-size:1.1rem;letter-spacing:.04em;">WATCHES & CAPS</div><div style="font-size:.72rem;color:rgba(255,255,255,.6);">Hot Picks</div></div>
+    </div>
+    <div onclick="setCat('shoes')" style="border-radius:14px;overflow:hidden;height:160px;position:relative;cursor:pointer;border:1px solid var(--bd);">
+      <img src="https://i.ibb.co/bR8R0BvV/IMG-0895.jpg" style="width:100%;height:100%;object-fit:cover;filter:brightness(.45);" onerror="this.src='https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400&q=70'"/>
+      <div style="position:absolute;bottom:0;left:0;right:0;padding:1rem;background:linear-gradient(transparent,rgba(0,0,0,.7));"><div style="font-family:'Bebas Neue',sans-serif;font-size:1.1rem;letter-spacing:.04em;">SHOES & SNEAKERS</div><div style="font-size:.72rem;color:rgba(255,255,255,.6);">Must Have</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="products">
+  <div class="sh"><div><div class="sl">Our Store</div><div class="st">ALL PRODUCTS</div></div><a class="va" href="#">View All</a></div>
+  <div class="pills" id="pills">
+    <button class="pill on" onclick="setCatPill('all',this)">All</button>
+    <button class="pill" onclick="setCatPill('oversized',this)">👕 Oversized</button>
+    <button class="pill" onclick="setCatPill('tshirt',this)">👕 T-Shirts</button>
+    <button class="pill" onclick="setCatPill('shirt',this)">👔 Shirts</button>
+    <button class="pill" onclick="setCatPill('jeans',this)">👖 Jeans</button>
+    <button class="pill" onclick="setCatPill('lower',this)">🩳 Lowers</button>
+    <button class="pill" onclick="setCatPill('shoes',this)">👟 Shoes</button>
+    <button class="pill" onclick="setCatPill('watch',this)">⌚ Watches</button>
+    <button class="pill" onclick="setCatPill('cap',this)">🧢 Caps</button>
+    <button class="pill" onclick="setCatPill('accessories',this)">🕶️ Accessories</button>
+  </div>
+  <div class="pgrid" id="pgrid"></div>
+</section>
+
+<div class="deal">
+  <div>
+    <div class="dlbl">⚡ Today Only</div>
+    <div class="dt">DEAL OF<br/><em>THE DAY</em></div>
+    <div class="dd">Limited stock — authentic streetwear at unbeatable prices. Grab it before midnight!</div>
+    <div class="trow"><div class="tb"><div class="tn2" id="th">00</div><div class="tl">Hrs</div></div><div class="tb"><div class="tn2" id="tm">00</div><div class="tl">Min</div></div><div class="tb"><div class="tn2" id="ts">00</div><div class="tl">Sec</div></div></div>
+    <a class="br" href="#products" style="display:inline-block;">Grab Now →</a>
+  </div>
+  <div class="di">
+    <img src="https://i.ibb.co/chKzpf73/image.jpg" alt="Deal" onerror="this.src='https://images.unsplash.com/photo-1542272604-787c3835535d?w=600&q=70'"/>
+    <div class="dpt"><div class="ds">Was ₹1499</div><div class="db">₹799</div><div class="ds">47% OFF 🔥</div></div>
+  </div>
 </div>
 
+<footer>
+  <div class="fmain">
+    <div>
+      <div class="flogo"><span>THE</span> LOCAL SHOP</div>
+      <div class="fd">Your go-to destination for fresh streetwear & everyday essentials. Authentic products, unbeatable prices.</div>
+      <div class="fsoc">
+        <a class="fsb" href="https://wa.me/919817175353" target="_blank">💬</a>
+        <a class="fsb" href="mailto:thelocalshop@gmail.com">📧</a>
+        <a class="fsb" href="#">📘</a><a class="fsb" href="#">📸</a>
+      </div>
+    </div>
+    <div class="fc"><h5>Shop</h5><ul><li><a href="#">T-Shirts & Tops</a></li><li><a href="#">Jeans & Lowers</a></li><li><a href="#">Shirts</a></li><li><a href="#">Shoes</a></li><li><a href="#">Watches & Caps</a></li></ul></div>
+    <div class="fc"><h5>Help</h5><ul><li><a href="#">Track Order</a></li><li><a href="#">Return Policy</a></li><li><a href="#">Size Guide</a></li><li><a href="https://wa.me/919817175353">WhatsApp Us</a></li></ul></div>
+    <div class="fc"><h5>Contact</h5><ul><li><a href="mailto:thelocalshop@gmail.com">thelocalshop@gmail.com</a></li><li><a href="https://wa.me/919817175353">+91 98171 75353</a></li><li><a href="#">Mon–Sat, 9AM–9PM</a></li><li><a href="#">UPI: 9817175353-3@ybl</a></li></ul></div>
+  </div>
+  <div class="fbot">
+    <span>© 2025 <strong style="color:var(--gold)">The Local Shop</strong>. All rights reserved.</span>
+    <div class="pms"><span class="pm">UPI</span><span class="pm">GPay</span><span class="pm">PhonePe</span><span class="pm">Paytm</span><span class="pm">COD</span></div>
+  </div>
+</footer>
+
+<a class="wa" href="https://wa.me/919817175353" target="_blank"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
+
+<div class="toast" id="toast"></div>
+
+<div class="cov" id="cov" onclick="closeCart()"></div>
+<div class="cdr" id="cdr">
+  <div class="cdh"><h2>🛒 MY CART</h2><button class="cclose" onclick="closeCart()">✕</button></div>
+  <div class="citems" id="citems"></div>
+  <div class="cft">
+    <div class="crow"><span>Subtotal</span><span id="csub">₹0</span></div>
+    <div class="crow"><span>Delivery</span><span style="color:var(--grn)">FREE</span></div>
+    <div class="ctrow"><span>Total</span><span id="ctotal">₹0</span></div>
+    <button class="chkbtn" onclick="openPay()">PROCEED TO PAY →</button>
+  </div>
 </div>
 
-<!-- FORM -->
-<div class="form-box" id="formBox">
-<h3>Enter Details</h3>
+<div class="uov" id="uov">
+  <div class="ubox">
+    <div class="uhd"><h2>💳 SECURE PAYMENT</h2><button class="ux" onclick="closePay()">✕</button></div>
+    <div class="uamtbar"><span class="uaml">Amount to Pay</span><span class="uamv" id="uamt">₹0</span></div>
+    <div class="ubody">
+      <div class="ust">📋 Your Details</div>
+      <div class="ufm">
+        <div class="ufr">
+          <div class="fg"><label>Full Name *</label><input id="pn" placeholder="Rahul Sharma"/></div>
+          <div class="fg"><label>Phone *</label><input id="pp" placeholder="+91 98765 43210" type="tel"/></div>
+        </div>
+        <div class="fg"><label>Email</label><input id="pe" placeholder="your@email.com" type="email"/></div>
+        <div class="fg"><label>Delivery Address *</label><textarea id="pa" placeholder="House No, Street, City, Pincode"></textarea></div>
+      </div>
+      <div class="ust">🧾 Order Summary</div>
+      <div class="psum" id="psum"></div>
+      <div class="ust">📱 Pay via UPI App</div>
+      <div class="uapps">
+        <div class="uapp" onclick="selApp(this,'gpay')"><div class="uai">🟢</div><div class="uan">Google Pay</div><div class="uat">GPay</div></div>
+        <div class="uapp" onclick="selApp(this,'phonepe')"><div class="uai">🟣</div><div class="uan">PhonePe</div><div class="uat">PhonePe</div></div>
+        <div class="uapp" onclick="selApp(this,'paytm')"><div class="uai">🔵</div><div class="uan">Paytm</div><div class="uat">Paytm</div></div>
+        <div class="uapp" onclick="selApp(this,'navi')"><div class="uai">🟡</div><div class="uan">Navi</div><div class="uat">Navi UPI</div></div>
+        <div class="uapp" onclick="selApp(this,'bhim')"><div class="uai">🇮🇳</div><div class="uan">BHIM UPI</div><div class="uat">BHIM</div></div>
+        <div class="uapp" onclick="selApp(this,'other')"><div class="uai">📲</div><div class="uan">Other UPI</div><div class="uat">Any App</div></div>
+      </div>
+      <div class="div"><span>OR Scan QR</span></div>
+      <div class="qrsec">
+        <div class="qrwrap"><img id="qri" src="" alt="QR"/></div>
+        <div class="quid">UPI ID: 9817175353-3@ybl</div>
+        <div class="qunote">Scan with any UPI app · Amount is locked</div>
+      </div>
+      <div class="div"><span>OR Pay Manually</span></div>
+      <div class="uman">
+        <div class="uidrow"><div><div class="uidl">UPI ID</div><div class="uidv">9817175353-3@ybl</div></div><button class="cpbtn" onclick="copyId()">📋 Copy</button></div>
+        <ol class="steps">
+          <li><span class="sn">1</span>Open any UPI app (GPay, PhonePe, Paytm etc.)</li>
+          <li><span class="sn">2</span>Go to "Send Money" → "Pay by UPI ID"</li>
+          <li><span class="sn">3</span>Enter ID: <strong style="color:var(--gold)">9817175353-3@ybl</strong></li>
+          <li><span class="sn">4</span>Enter exact amount shown above — do NOT change it</li>
+          <li><span class="sn">5</span>Add note: your name & phone, then confirm payment</li>
+        </ol>
+      </div>
+      <button class="paybtn" onclick="confirmPay()">✅ I HAVE PAID — CONFIRM ORDER</button>
+      <div class="psec">🔒 Secure · UPI Verified · Confirmed via WhatsApp</div>
+    </div>
+  </div>
+</div>
 
-<input type="text" id="name" placeholder="Your Name">
-<input type="text" id="phone" placeholder="Phone Number">
-<input type="text" id="address" placeholder="Address">
-
-<button onclick="payNow()">Pay Now</button>
-<button class="whatsapp" onclick="whatsappOrder()">Confirm on WhatsApp</button>
-<button onclick="closeForm()">Cancel</button>
+<div class="sov" id="sov">
+  <div class="sbox">
+    <div class="sck">✅</div>
+    <h3>ORDER PLACED!</h3>
+    <p>Thank you! Your order is confirmed. We'll contact you on WhatsApp to confirm dispatch.</p>
+    <div class="soid">Order ID: <span id="oid">#TLS000</span></div>
+    <button class="sbtn" onclick="closeSuc()">CONTINUE SHOPPING</button>
+  </div>
 </div>
 
 <script>
-let productName = "";
-let productPrice = "";
+const PRODS=[
+  {id:1,name:'Oversized Drop Shoulder Tee',cat:'oversized',price:599,old:999,img:'https://i.ibb.co/yFr0P33p/image.jpg',fb:'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400&q=70',tag:'hot',stars:4.8,rev:312,sizes:['S','M','L','XL','XXL']},
+  {id:2,name:'Baggy Cargo Jeans',cat:'jeans',price:1199,old:1999,img:'https://i.ibb.co/chKzpf73/image.jpg',fb:'https://images.unsplash.com/photo-1542272604-787c3835535d?w=400&q=70',tag:'trend',stars:4.7,rev:189,sizes:['28','30','32','34','36']},
+  {id:3,name:'Classic Analog Watch',cat:'watch',price:899,old:1499,img:'https://i.ibb.co/PG9tSjFw/image.jpg',fb:'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400&q=70',tag:'new',stars:4.9,rev:441,sizes:['Free Size']},
+  {id:4,name:'Straight Fit Jeans',cat:'jeans',price:999,old:1599,img:'https://i.ibb.co/bR8R0BvV/IMG-0895.jpg',fb:'https://images.unsplash.com/photo-1542272604-787c3835535d?w=400&q=70',tag:'sale',stars:4.6,rev:156,sizes:['28','30','32','34']},
+  {id:5,name:'Graphic Oversized Tee',cat:'oversized',price:499,old:799,img:'https://i.ibb.co/yFr0P33p/image.jpg',fb:'https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=400&q=70',tag:'hot',stars:4.5,rev:278,sizes:['S','M','L','XL']},
+  {id:6,name:'Linen Casual Shirt',cat:'shirt',price:799,old:1299,img:'https://i.ibb.co/chKzpf73/image.jpg',fb:'https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=400&q=70',tag:'new',stars:4.7,rev:94,sizes:['S','M','L','XL','XXL']},
+  {id:7,name:'Jogger Track Pants',cat:'lower',price:449,old:699,img:'https://i.ibb.co/PG9tSjFw/image.jpg',fb:'https://images.unsplash.com/photo-1591195853828-11db59a44f43?w=400&q=70',tag:'sale',stars:4.4,rev:203,sizes:['S','M','L','XL']},
+  {id:8,name:'Retro Sunglasses',cat:'accessories',price:349,old:599,img:'https://i.ibb.co/bR8R0BvV/IMG-0895.jpg',fb:'https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=400&q=70',tag:'trend',stars:4.6,rev:167,sizes:['Free Size']},
+  {id:9,name:'Snapback Cap',cat:'cap',price:299,old:499,img:'https://i.ibb.co/yFr0P33p/image.jpg',fb:'https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=400&q=70',tag:'new',stars:4.5,rev:88,sizes:['Free Size']},
+  {id:10,name:'White Chunky Sneakers',cat:'shoes',price:1499,old:2499,img:'https://i.ibb.co/chKzpf73/image.jpg',fb:'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400&q=70',tag:'hot',stars:4.8,rev:521,sizes:['6','7','8','9','10','11']},
+  {id:11,name:'Acid Wash Tee',cat:'tshirt',price:399,old:599,img:'https://i.ibb.co/PG9tSjFw/image.jpg',fb:'https://images.unsplash.com/photo-1503341504253-dff4815485f1?w=400&q=70',tag:'trend',stars:4.3,rev:72,sizes:['S','M','L','XL']},
+  {id:12,name:'Chain Mesh Watch',cat:'watch',price:1199,old:1999,img:'https://i.ibb.co/bR8R0BvV/IMG-0895.jpg',fb:'https://images.unsplash.com/photo-1548171915-f2bc2ae5a41d?w=400&q=70',tag:'new',stars:4.9,rev:334,sizes:['Free Size']},
+];
+let cart=[],curCat='all',srch='',selSz={};
+const tagCls={hot:'th',new:'tn',sale:'ts',trend:'tt'};
+const tagLbl={hot:'🔥 HOT',new:'✨ NEW',sale:'💰 SALE',trend:'📈 TREND'};
 
-function openForm(name, price) {
-  productName = name;
-  productPrice = price;
-  document.getElementById("formBox").style.display = "block";
+function render(){
+  const list=PRODS.filter(p=>{
+    const c=curCat==='all'||p.cat===curCat;
+    const s=p.name.toLowerCase().includes(srch.toLowerCase());
+    return c&&s;
+  });
+  const g=document.getElementById('pgrid');
+  if(!list.length){g.innerHTML=`<div style="grid-column:1/-1;text-align:center;padding:3rem;color:var(--gr)"><div style="font-size:2.5rem;margin-bottom:.8rem">😕</div><div style="font-weight:800;font-size:1rem">No products found</div></div>`;return;}
+  g.innerHTML=list.map(p=>{
+    const disc=p.old?Math.round((1-p.price/p.old)*100):0;
+    const tagH=p.tag?`<div class="ptag ${tagCls[p.tag]}">${tagLbl[p.tag]}</div>`:'';
+    const stars='★'.repeat(Math.floor(p.stars))+'☆'.repeat(5-Math.floor(p.stars));
+    const szH=p.sizes.map(s=>`<span class="sz ${selSz[p.id]===s?'on':''}" onclick="selSize(event,${p.id},'${s}')">${s}</span>`).join('');
+    return`<div class="pc" id="pc${p.id}">
+<div class="piw">${tagH}
+<button class="pw" onclick="toggleWish(this)">♡</button>
+<img src="${p.img}" alt="${p.name}" loading="lazy" onerror="this.src='${p.fb}'"/>
+<div class="phb"><button class="pa" onclick="addCart(${p.id})">Add to Cart</button><button class="pb" onclick="buyNow(${p.id})">Buy Now</button></div>
+</div>
+<div class="pb2">
+<div class="pbr">The Local Shop</div>
+<div class="pn">${p.name}</div>
+<div class="pst">${stars}<span>(${p.rev})</span></div>
+<div class="ppr"><span class="pp">₹${p.price}</span>${p.old?`<span class="po">₹${p.old}</span><span class="pd">${disc}% OFF</span>`:''}</div>
+<div class="psz">${szH}</div>
+</div></div>`;
+  }).join('');
 }
 
-function closeForm() {
-  document.getElementById("formBox").style.display = "none";
+function selSize(e,id,s){e.stopPropagation();selSz[id]=s;document.querySelectorAll(`#pc${id} .sz`).forEach(el=>el.classList.remove('on'));e.target.classList.add('on');}
+function toggleWish(b){b.classList.toggle('on');b.textContent=b.classList.contains('on')?'♥':'♡';showToast(b.classList.contains('on')?'Added to wishlist 💖':'Removed');}
+
+function addCart(id,direct){
+  const p=PRODS.find(x=>x.id===id);
+  const sz=selSz[id]||p.sizes[0];
+  const key=`${id}_${sz}`;
+  const ex=cart.find(x=>x.key===key);
+  if(ex)ex.qty++;else cart.push({...p,qty:1,size:sz,key});
+  updCart();showToast(`${p.name} added! 🛒`,'g');
+  if(direct){closeCart();setTimeout(openPay,300);}
+}
+function buyNow(id){addCart(id,true);}
+function chQty(key,d){const i=cart.find(x=>x.key===key);if(!i)return;i.qty+=d;if(i.qty<1)cart=cart.filter(x=>x.key!==key);updCart();}
+function remItem(key){cart=cart.filter(x=>x.key!==key);updCart();}
+
+function updCart(){
+  const total=cart.reduce((s,i)=>s+i.price*i.qty,0);
+  const count=cart.reduce((s,i)=>s+i.qty,0);
+  document.getElementById('cbadge').textContent=count;
+  document.getElementById('csub').textContent='₹'+total.toLocaleString('en-IN');
+  document.getElementById('ctotal').textContent='₹'+total.toLocaleString('en-IN');
+  const el=document.getElementById('citems');
+  if(!cart.length){el.innerHTML=`<div class="cemp"><div>🛒</div><div style="font-weight:800;color:var(--w)">Cart is empty</div><div style="font-size:.84rem;margin-top:.3rem">Add some cool stuff!</div></div>`;return;}
+  el.innerHTML=cart.map(i=>`<div class="ci"><img class="ci img" style="width:72px;height:90px;object-fit:cover;border-radius:8px;flex-shrink:0;" src="${i.img}" onerror="this.src='${i.fb}'"/><div class="cii"><div class="cibr">The Local Shop</div><div class="cin">${i.name}</div><div class="cim">Size: ${i.size}</div><div class="cip">₹${(i.price*i.qty).toLocaleString('en-IN')}</div><div class="ciq"><button class="qb" onclick="chQty('${i.key}',-1)">−</button><span class="qn">${i.qty}</span><button class="qb" onclick="chQty('${i.key}',1)">+</button></div></div><button class="cir" onclick="remItem('${i.key}')">✕</button></div>`).join('');
 }
 
-function payNow() {
-  let upi = "9817175353-3@ybl";
-  let url = `upi://pay?pa=${upi}&pn=Trending Outfit 2.0&tn=Buy ${productName}&am=${productPrice}&cu=INR`;
+function openCart(){document.getElementById('cdr').classList.add('open');document.getElementById('cov').classList.add('show');}
+function closeCart(){document.getElementById('cdr').classList.remove('open');document.getElementById('cov').classList.remove('show');}
 
-  // Try opening UPI
-  window.location.href = url;
+function openPay(){
+  if(!cart.length){showToast('Cart is empty! 🛒','r');return;}
+  closeCart();
+  const total=cart.reduce((s,i)=>s+i.price*i.qty,0);
+  document.getElementById('uamt').textContent='₹'+total.toLocaleString('en-IN');
+  document.getElementById('qri').src=`https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=upi://pay?pa=9817175353-3@ybl%26pn=TheLocalShop%26am=${total}%26cu=INR%26tn=TLSOrder`;
+  document.getElementById('psum').innerHTML=`<div class="pstt">Order Items</div>${cart.map(i=>`<div class="psi"><span>${i.name} (${i.size}) ×${i.qty}</span><span>₹${(i.price*i.qty).toLocaleString('en-IN')}</span></div>`).join('')}<div class="psto"><span>Total</span><span>₹${total.toLocaleString('en-IN')}</span></div>`;
+  document.getElementById('uov').classList.add('show');
+}
+function closePay(){document.getElementById('uov').classList.remove('show');}
 
-  // Backup alert
-  setTimeout(() => {
-    alert("Agar payment complete na ho to WhatsApp button se confirm karo.");
-  }, 2000);
+function selApp(btn,app){
+  document.querySelectorAll('.uapp').forEach(b=>b.classList.remove('sel'));btn.classList.add('sel');
+  const total=cart.reduce((s,i)=>s+i.price*i.qty,0);
+  const id='9817175353-3@ybl';
+  const links={gpay:`gpay://upi/pay?pa=${id}&pn=TheLocalShop&am=${total}&cu=INR`,phonepe:`phonepe://pay?pa=${id}&pn=TheLocalShop&am=${total}&cu=INR`,paytm:`paytmmp://pay?pa=${id}&pn=TheLocalShop&am=${total}&cu=INR`,navi:`upi://pay?pa=${id}&pn=TheLocalShop&am=${total}&cu=INR`,bhim:`upi://pay?pa=${id}&pn=TheLocalShop&am=${total}&cu=INR`,other:`upi://pay?pa=${id}&pn=TheLocalShop&am=${total}&cu=INR`};
+  window.location.href=links[app];showToast(`Opening ${app}... 📲`,'g');
+}
+function copyId(){navigator.clipboard.writeText('9817175353-3@ybl').then(()=>showToast('UPI ID copied! ✅','g')).catch(()=>showToast('UPI: 9817175353-3@ybl'));}
+
+function confirmPay(){
+  const n=document.getElementById('pn').value.trim();
+  const ph=document.getElementById('pp').value.trim();
+  const addr=document.getElementById('pa').value.trim();
+  if(!n){showToast('Enter your name ✋','r');return;}
+  if(!ph){showToast('Enter phone number 📞','r');return;}
+  if(!addr){showToast('Enter delivery address 📍','r');return;}
+  const total=cart.reduce((s,i)=>s+i.price*i.qty,0);
+  const em=document.getElementById('pe').value.trim();
+  const oid='#TLS'+Date.now().toString().slice(-6);
+  document.getElementById('oid').textContent=oid;
+  const sub=encodeURIComponent(`${oid} – New Order from ${n} – The Local Shop`);
+  const body=encodeURIComponent(`NEW ORDER – THE LOCAL SHOP\n${'─'.repeat(38)}\nORDER ID : ${oid}\nNAME     : ${n}\nPHONE    : ${ph}\nEMAIL    : ${em||'N/A'}\nADDRESS  : ${addr}\n\nITEMS:\n${cart.map(i=>`• ${i.name} (${i.size}) ×${i.qty} = ₹${(i.price*i.qty).toLocaleString('en-IN')}`).join('\n')}\n\nTOTAL: ₹${total.toLocaleString('en-IN')}\nUPI: 9817175353-3@ybl\n${'─'.repeat(38)}`);
+  window.open(`mailto:thelocalshop@gmail.com?subject=${sub}&body=${body}`,'_blank');
+  const wa=encodeURIComponent(`🛒 *New Order – The Local Shop*\nOrder: ${oid}\nName: ${n}\nPhone: ${ph}\nAddress: ${addr}\n\n${cart.map(i=>`• ${i.name} (${i.size}) ×${i.qty} = ₹${(i.price*i.qty).toLocaleString('en-IN')}`).join('\n')}\n\n*Total: ₹${total.toLocaleString('en-IN')}*\nUPI: 9817175353-3@ybl`);
+  setTimeout(()=>window.open(`https://wa.me/919817175353?text=${wa}`,'_blank'),600);
+  closePay();document.getElementById('sov').classList.add('show');cart=[];updCart();
+}
+function closeSuc(){document.getElementById('sov').classList.remove('show');}
+
+function setCat(c){curCat=c;document.querySelectorAll('.pill').forEach(p=>p.classList.remove('on'));document.getElementById('products').scrollIntoView({behavior:'smooth'});render();}
+function setCatPill(c,el){curCat=c;document.querySelectorAll('.pill').forEach(p=>p.classList.remove('on'));el.classList.add('on');render();}
+function doSearch(){srch=document.getElementById('si').value;render();}
+
+function showToast(msg,type){
+  const t=document.getElementById('toast');t.textContent=msg;t.className='toast show'+(type?' '+type:'');
+  clearTimeout(t._t);t._t=setTimeout(()=>t.className='toast',2700);
 }
 
-function whatsappOrder() {
-  let name = document.getElementById("name").value;
-  let phone = document.getElementById("phone").value;
-  let address = document.getElementById("address").value;
-
-  if(!name || !phone || !address){
-    alert("Please fill all details");
-    return;
-  }
-
-  let msg = `Order Details:%0AProduct: ${productName}%0APrice: ₹${productPrice}%0AName: ${name}%0APhone: ${phone}%0AAddress: ${address}%0AUPI: 9817175353-3@ybl`;
-
-  window.open(`https://wa.me/919817175353?text=${msg}`);
-}
+// Timer
+function tick(){const e=new Date();e.setHours(23,59,59,0);const d=Math.max(0,Math.floor((e-new Date())/1000));document.getElementById('th').textContent=String(Math.floor(d/3600)).padStart(2,'0');document.getElementById('tm').textContent=String(Math.floor((d%3600)/60)).padStart(2,'0');document.getElementById('ts').textContent=String(d%60).padStart(2,'0');}
+tick();setInterval(tick,1000);
+render();updCart();
 </script>
-
 </body>
 </html>
